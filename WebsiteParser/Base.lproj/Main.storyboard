@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="WebsiteParser" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iXS-ys-r1n">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="333"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="iXS-ys-r1n" secondAttribute="height" multiplier="125:111" id="eIJ-nQ-H9J"/>
+                                </constraints>
+                            </imageView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="sdD-up-zZl">
+                                <rect key="frame" x="178" y="157" width="20" height="20"/>
+                            </activityIndicatorView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xyd-bf-it7">
+                                <rect key="frame" x="0.0" y="331" width="375" height="38"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Xyd-bf-it7" secondAttribute="height" multiplier="375:38" id="AZH-aw-k6J"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="21"/>
+                                <state key="normal" title="Instagram"/>
+                                <connections>
+                                    <action selector="insagramButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CRS-zL-Y68"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="iXS-ys-r1n" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="FjO-TJ-1UW"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="top" secondItem="iXS-ys-r1n" secondAttribute="top" constant="20" id="JQ0-Rc-6Lb"/>
+                            <constraint firstItem="Xyd-bf-it7" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Mkd-Mw-4JR"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Xyd-bf-it7" secondAttribute="trailing" id="PcL-pC-PPj"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="iXS-ys-r1n" secondAttribute="trailing" id="T5g-av-mA0"/>
+                            <constraint firstItem="sdD-up-zZl" firstAttribute="centerX" secondItem="iXS-ys-r1n" secondAttribute="centerX" id="bA7-j0-Wdb"/>
+                            <constraint firstItem="Xyd-bf-it7" firstAttribute="top" secondItem="iXS-ys-r1n" secondAttribute="bottom" constant="-2" id="jIv-48-xga"/>
+                            <constraint firstItem="sdD-up-zZl" firstAttribute="centerY" secondItem="iXS-ys-r1n" secondAttribute="centerY" id="qzf-Jv-uvL"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="activityIndicator" destination="sdD-up-zZl" id="N0A-sr-VyP"/>
+                        <outlet property="imageView" destination="iXS-ys-r1n" id="0Hu-2i-lXV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-146.40000000000001" y="69.715142428785612"/>
+        </scene>
+    </scenes>
+</document>
