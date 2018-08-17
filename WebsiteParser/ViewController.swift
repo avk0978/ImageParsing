@@ -22,10 +22,7 @@ class ViewController: UIViewController, ErrorMessage {
         }
     }
     
-    //fileprivate var siteURL = "https://pikabu.ru/"
-         fileprivate var siteURL = "https://pikabu.ru/tag/%D0%BC%D0%B5%D0%BC%D1%8B/hot"
-    //    fileprivate var siteURL = "http://snotes.kv.in.ua/"
-//    fileprivate var siteURL = "https://vz.ru/"
+        fileprivate var siteURL = "http://snotes.kv.in.ua/"
     
     fileprivate var image: UIImage? {
         get {
@@ -73,7 +70,7 @@ class ViewController: UIViewController, ErrorMessage {
         DispatchQueue.global(qos: .utility).async {
             do {
                 let doc: Document = try SwiftSoup.parse(link)
-                guard let element: Element = try doc.select("img[src$=.jpg]").first() else {
+                guard let element: Element = try doc.select("img[src$=.png]").first() else {
                     self.present(self.errorMessageAC("Ошибка парсинга данных. Возможно надо поменять расширение файла"), animated: true)
                     return
                 }
@@ -89,7 +86,7 @@ class ViewController: UIViewController, ErrorMessage {
     }
     
     func fetchImage(imageLink: String) {
-        let imageURL = URL(string: imageLink)
+        let imageURL = URL(string: siteURL + imageLink)
         
         guard let url = imageURL else {
             present(errorMessageAC("Битая ссылка"), animated: true)
