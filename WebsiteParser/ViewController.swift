@@ -10,18 +10,22 @@ import UIKit
 import SwiftSoup
 
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, ErrorMessage {
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     @IBAction func insagramButton(_ sender: UIButton) {
-        let post = InstagramManager.share
-        if  post.postImageToInstagramWithCaption(imageInstagram: image!, view: self.view) == false {
-            present(post.errorMessageAC("Установите приложение Instagram на ваше устройство"), animated: true)
+        let instagramApp = InstagramManager.share
+        if  instagramApp.postImageToInstagramWithCaption(imageInstagram: image!, view: self.view) == false {
+            present(instagramApp.errorMessageAC("Установите приложение Instagram на ваше устройство"), animated: true)
         }
     }
     
+    //fileprivate var siteURL = "https://pikabu.ru/"
+         fileprivate var siteURL = "https://pikabu.ru/tag/%D0%BC%D0%B5%D0%BC%D1%8B/hot"
+    //    fileprivate var siteURL = "http://snotes.kv.in.ua/"
+//    fileprivate var siteURL = "https://vz.ru/"
     
     fileprivate var image: UIImage? {
         get {
@@ -35,54 +39,75 @@ class ViewController: UIViewController {
         }
     }
     
-
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        parser(http: "http://snotes.kv.in.ua")
+        parser(http: siteURL)
         
     }
     
     func parser(http: String) {
         
-        guard let url = URL(string: http) else { return }
+        guard let url = URL(string: http) else {
+            print("Ошибка адреcа http")
+            return
+        }
         
         activityIndicator.isHidden = false
         activityIndicator.startAnimating()
+        
+        DispatchQueue.global(qos: .utility).async {
+            do {
+                let html = try String(contentsOf: url, encoding: .ascii)
+                self.downloadImageByHTML(link: html)
+            } catch let error {
+                print("Error: \(error)")
+            }
 
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
-            guard error == nil else { return }
-                let html = String(data: data!, encoding: String.Encoding.utf8)
-                do {
-                    let doc: Document = try SwiftSoup.parse(html!)
-                    let png: Element = try doc.select("img[src$=.png]").first()!
-                    let imageLink = try png.attr("src")
-                    
-                    self.downloadImage(imageLink: imageLink)
-                    
-                } catch Exception.Error(let type, let message) {
-                    print("error: \(message), type: \(type)")
-                } catch {
-                    print("error")
-                }
-            
-            
-        }.resume()
-    }
-    
-    func downloadImage(imageLink: String)  {
-        let strURL = "http://snotes.kv.in.ua/" + imageLink
-        let imageURL = URL(string: strURL)
-       
-        guard let url = imageURL, let imageData = try? Data(contentsOf: url) else { return }
-        DispatchQueue.main.async {
-            self.image = UIImage(data: imageData)
         }
 
     }
+    
+    func downloadImageByHTML(link: String) {
+        DispatchQueue.global(qos: .utility).async {
+            do {
+                let doc: Document = try SwiftSoup.parse(link)
+                guard let element: Element = try doc.select("img[src$=.jpg]").first() else {
+                    self.present(self.errorMessageAC("Ошибка парсинга данных. Возможно надо поменять расширение файла"), animated: true)
+                    return
+                }
+                
+                self.fetchImage(imageLink: try element.attr("src"))
+                
+            } catch Exception.Error(let type, let message) {
+                print("error: \(message), type: \(type)")
+            } catch {
+                print("error")
+            }
+        }
+    }
+    
+    func fetchImage(imageLink: String) {
+        let imageURL = URL(string: imageLink)
+        
+        guard let url = imageURL else {
+            present(errorMessageAC("Битая ссылка"), animated: true)
+            return
+        }
+        DispatchQueue.global(qos: .utility).async {
+            guard let imageData = try? Data(contentsOf: url) else {
+                self.present(self.errorMessageAC("Ошибка данных"), animated: true)
+                return
+            }
+            DispatchQueue.main.async {
+                self.image = UIImage(data: imageData)
+            }
 
-
-
+        }
+    }
+    
+    
+    
 }
 

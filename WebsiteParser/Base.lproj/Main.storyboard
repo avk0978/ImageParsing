@@ -29,7 +29,7 @@
                                 <rect key="frame" x="178" y="157" width="20" height="20"/>
                             </activityIndicatorView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xyd-bf-it7">
-                                <rect key="frame" x="0.0" y="331" width="375" height="38"/>
+                                <rect key="frame" x="1" y="335" width="375" height="38"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Xyd-bf-it7" secondAttribute="height" multiplier="375:38" id="AZH-aw-k6J"/>
                                 </constraints>
@@ -44,11 +44,11 @@
                         <constraints>
                             <constraint firstItem="iXS-ys-r1n" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="FjO-TJ-1UW"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="top" secondItem="iXS-ys-r1n" secondAttribute="top" constant="20" id="JQ0-Rc-6Lb"/>
-                            <constraint firstItem="Xyd-bf-it7" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Mkd-Mw-4JR"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Xyd-bf-it7" secondAttribute="trailing" id="PcL-pC-PPj"/>
+                            <constraint firstItem="Xyd-bf-it7" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="1" id="Mkd-Mw-4JR"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Xyd-bf-it7" secondAttribute="trailing" constant="-1" id="PcL-pC-PPj"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="iXS-ys-r1n" secondAttribute="trailing" id="T5g-av-mA0"/>
                             <constraint firstItem="sdD-up-zZl" firstAttribute="centerX" secondItem="iXS-ys-r1n" secondAttribute="centerX" id="bA7-j0-Wdb"/>
-                            <constraint firstItem="Xyd-bf-it7" firstAttribute="top" secondItem="iXS-ys-r1n" secondAttribute="bottom" constant="-2" id="jIv-48-xga"/>
+                            <constraint firstItem="Xyd-bf-it7" firstAttribute="top" secondItem="iXS-ys-r1n" secondAttribute="bottom" constant="2" id="jIv-48-xga"/>
                             <constraint firstItem="sdD-up-zZl" firstAttribute="centerY" secondItem="iXS-ys-r1n" secondAttribute="centerY" id="qzf-Jv-uvL"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
